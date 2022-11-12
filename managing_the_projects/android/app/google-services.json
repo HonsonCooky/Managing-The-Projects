@@ -1,0 +1,46 @@
+{
+  "project_info": {
+    "project_number": "520180584514",
+    "project_id": "managing-the-projects",
+    "storage_bucket": "managing-the-projects.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:520180584514:android:8aa01255bf1f617c0b5ddb",
+        "android_client_info": {
+          "package_name": "com.honsoncooky.managing_the_projects"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "520180584514-m8jeb8ulnrt01cv08b31hp9eua12o9c8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCDJ0ypfN7ULgwTP5o4z_FkuCsy6xO2ZQM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "520180584514-m8jeb8ulnrt01cv08b31hp9eua12o9c8.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "520180584514-66psgrhedpnqrkcpss346or5rr5bqsvc.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.honsoncooky.managingTheProjects"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
