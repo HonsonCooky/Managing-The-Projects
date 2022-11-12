@@ -5,6 +5,13 @@ import 'common/presentation/mtp_app.dart';
 import 'firebase_options.dart';
 
 void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
-  runApp(const MTPApp());
+  runApp(const MtpApp());
+}
+
+extension StringExt on String {
+  String cap() => "${this[0].toUpperCase()}${substring(1).toLowerCase()}";
+
+  String title() => split(" ").map((e) => e.cap()).join(" ");
 }
