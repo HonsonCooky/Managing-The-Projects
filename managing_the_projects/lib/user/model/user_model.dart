@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_model.g.dart';
 
 @JsonSerializable()
-class UserModel {
+class UserModel extends ChangeNotifier {
   String uuid;
   String name;
   ThemeMode theme;

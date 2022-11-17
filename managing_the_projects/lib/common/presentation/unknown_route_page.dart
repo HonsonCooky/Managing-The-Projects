@@ -1,16 +1,24 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:managing_the_projects/common/presentation/mtp_fragment.dart';
 
-class UnknownRoutePage extends StatefulWidget {
+class UnknownRoutePage extends MtpFragment {
   const UnknownRoutePage({super.key});
 
   @override
-  State<StatefulWidget> createState() => _UnknownRoutePageState();
-}
-
-class _UnknownRoutePageState extends State<UnknownRoutePage> {
-  @override
   Widget build(BuildContext context) {
-    // TODO: implement build
-    throw UnimplementedError();
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        FittedBox(
+          fit: BoxFit.scaleDown,
+          child: Text(
+            "Oh No! How'd we get here?",
+            textAlign: TextAlign.center,
+            style: Theme.of(context).textTheme.headlineSmall,
+          ),
+        ),
+      ],
+    );
   }
 }

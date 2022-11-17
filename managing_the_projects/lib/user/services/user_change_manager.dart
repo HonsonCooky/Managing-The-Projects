@@ -1,7 +1,7 @@
 import 'package:flutter/cupertino.dart';
-import 'package:managing_the_projects/user/services/user_model.dart';
+import 'package:managing_the_projects/user/model/user_model.dart';
 
-class UserChangeManager extends ChangeNotifier {
+class CurrentUserManager extends ChangeNotifier {
   UserModel? currentUser;
   
   void updateUser(UserModel newUser) {
