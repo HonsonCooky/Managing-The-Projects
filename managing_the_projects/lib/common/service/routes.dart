@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:managing_the_projects/authentication/presentation/login_page.dart';
+import 'package:managing_the_projects/authentication/presentation/auth_page.dart';
 import 'package:managing_the_projects/common/model/theme_model.dart';
-import 'package:managing_the_projects/common/presentation/mtp_fragment.dart';
-import 'package:managing_the_projects/common/presentation/unknown_route_page.dart';
-import 'package:managing_the_projects/home/presentation/home_page.dart';
+import 'package:managing_the_projects/common/presentation/unknown_route_frag.dart';
+import 'package:managing_the_projects/home/presentation/home_frag.dart';
 
 enum MtpRoute {
   login,
@@ -44,14 +43,23 @@ extension MtpRouteExt on MtpRoute {
       default: return colors.primary;
     }
   }
+  
+  Color? getOtherColor(MtpColors? colors){
+    if (colors == null) return null;
+    switch (this){
+      case MtpRoute.chores: return colors.onSecondary;
+      case MtpRoute.tables: return colors.onTertiary;
+      default: return colors.onPrimary;
+    }
+  }
 
 
-  MtpFragment getPage() {
+  Widget getPresentation() {
     switch (this) {
       case MtpRoute.login:
-        return const LoginPage();
+        return const AuthPage();
       case MtpRoute.home:
-        return const HomePage();
+        return const HomeFrag();
       case MtpRoute.chores:
         break;
       case MtpRoute.tables:
@@ -59,6 +67,6 @@ extension MtpRouteExt on MtpRoute {
       case MtpRoute.settings:
         break;
     }
-    return const UnknownRoutePage();
+    return const UnknownRouteFrag();
   }
 }

@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:managing_the_projects/common/presentation/mtp_fragment.dart';
+import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
-class UnknownRoutePage extends MtpFragment {
-  const UnknownRoutePage({super.key});
+class UnknownRouteFrag extends MtpFragment with MtpAliases {
+  const UnknownRouteFrag({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class UnknownRoutePage extends MtpFragment {
           child: Text(
             "Oh No! How'd we get here?",
             textAlign: TextAlign.center,
-            style: Theme.of(context).textTheme.headlineSmall,
+            style: textTheme(context).headlineSmall,
           ),
         ),
       ],

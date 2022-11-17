@@ -7,21 +7,25 @@ import 'package:flutter/material.dart';
 @immutable
 class MtpColors extends ThemeExtension<MtpColors> {
   final Color? primary;
+  final Color? onPrimary;
   final Color? secondary;
+  final Color? onSecondary;
   final Color? tertiary;
+  final Color? onTertiary;
   final Color? background;
+  final Color? onBackground;
   final Color? shade;
-  final Color? text;
-  final Color? label;
 
   const MtpColors({
     this.primary,
+    this.onPrimary,
     this.secondary,
+    this.onSecondary,
     this.tertiary,
+    this.onTertiary,
     this.background,
     this.shade,
-    this.text,
-    this.label,
+    this.onBackground,
   });
 
   @override
@@ -73,12 +77,14 @@ final lightTheme = baseTheme.copyWith(
   extensions: <MtpColors>[
     const MtpColors(
       primary: Color(0xff8bbaf0),
+      onPrimary: Color(0Xff004a78),
       secondary: Color(0xfff8cdde),
+      onSecondary: Color(0xff96707f),
       tertiary: Color(0xfffbedc9),
+      onTertiary: Color(0xff948868),
       background: Color(0xfffbfcfe),
+      onBackground: Color(0xff909193),
       shade: Color(0xffd7dce9),
-      text: Color(0xff909193),
-      label: Color(0Xff727375),
     ),
   ],
 );
@@ -93,7 +99,6 @@ final darkTheme = baseTheme.copyWith(brightness: Brightness.dark, extensions: <M
     tertiary: Color(0xfff1fa8c),
     background: Color(0xff282a36),
     shade: Color(0xfff8f8f2),
-    text: Color(0xff717381),
-    label: Color(0Xff8f91a0),
+    onBackground: Color(0xff717381),
   ),
 ]);
