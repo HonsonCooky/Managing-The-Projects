@@ -23,29 +23,20 @@ class _MtpPageState extends State<MtpPage> with MtpAliases {
     );
   }
 
-  SliverAppBar appBar() {
+  SliverAppBar _appBar() {
     return SliverAppBar(
-      expandedHeight: height(context) / 3,
+      expandedHeight: height(context) / 5,
       backgroundColor: _currentPage.getColor(mtpColors(context)),
       pinned: true,
-      flexibleSpace: Stack(
-        alignment: Alignment.centerRight,
-        children: [
-          InkWell(
-            onTap: () {},
-            child: Icon(Icons.account_circle, size: 50,),
-          ),
-          FlexibleSpaceBar(
-            title: Text(
-              _currentPage.name.title(),
-              style: textTheme(context).displayMedium?.copyWith(
-                    color: _currentPage.getOtherColor(mtpColors(context)),
-                    fontWeight: FontWeight.w100,
-                  ),
-            ),
-            titlePadding: EdgeInsets.symmetric(horizontal: width(context) / 10),
-          ),
-        ],
+      flexibleSpace: FlexibleSpaceBar(
+        titlePadding: EdgeInsets.symmetric(horizontal: width(context) / 8),
+        title: Text(
+          _currentPage.name.title(),
+          style: textTheme(context).displaySmall?.copyWith(
+                color: _currentPage.getOtherColor(mtpColors(context)),
+                fontWeight: FontWeight.w200,
+              ),
+        ),
       ),
     );
   }
@@ -58,20 +49,10 @@ class _MtpPageState extends State<MtpPage> with MtpAliases {
         child: Scaffold(
           backgroundColor: mtpColors(context).background,
           body: CustomScrollView(
+            physics: const BouncingScrollPhysics(),
             slivers: [
-              appBar(),
-              SliverList(
-                delegate: SliverChildBuilderDelegate(
-                  (BuildContext context, int index) {
-                    return Container(
-                      color: index.isOdd ? Colors.white : Colors.black12,
-                      height: 100.0,
-                    );
-                  },
-                  childCount: 20,
-                ),
-              ),
-              SliverToBoxAdapter(child: _currentPage.getPresentation())
+              _appBar(),
+              SliverFillRemaining(child: _currentPage.getPresentation()),
             ],
           ),
           bottomNavigationBar: BottomNavigationBar(
