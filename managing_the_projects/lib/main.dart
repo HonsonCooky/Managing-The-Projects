@@ -1,5 +1,6 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:managing_the_projects/authentication/presentation/auth_page.dart';
 import 'package:managing_the_projects/common/presentation/mtp_page.dart';
 import 'package:managing_the_projects/user/services/user_change_manager.dart';
 import 'package:provider/provider.dart';
@@ -26,7 +27,7 @@ class MtpApp extends StatelessWidget {
         builder: (context, userManager, child) => MaterialApp(
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
-          home: const MtpPage(),
+          home: userManager.currentUser == null ? const AuthPage() : const MtpPage(),
           themeMode: userManager.currentUser?.theme,
           theme: lightTheme,
           darkTheme: darkTheme,

@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:managing_the_projects/common/presentation/mtp_fragment.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
-class UnknownRouteFrag extends MtpFragment with MtpAliases {
+class UnknownRouteFrag extends MtpFragmentStateless with MtpAliases {
   const UnknownRouteFrag({super.key});
 
   @override

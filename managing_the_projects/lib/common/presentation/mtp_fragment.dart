@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 
-abstract class MtpFragment extends StatelessWidget {
-  const MtpFragment({super.key});
+abstract class MtpFragmentStateless extends StatelessWidget {
+  const MtpFragmentStateless({super.key});
+}
+
+abstract class MtpFragmentStateful extends StatefulWidget {
+  const MtpFragmentStateful({super.key});
 }
