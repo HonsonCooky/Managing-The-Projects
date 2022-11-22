@@ -9,15 +9,14 @@ class UserInput extends StatelessWidget with MtpAliases {
   final FocusNode focusNode;
 
   late final TextStyle? hintStyle = textTheme(context).titleLarge?.copyWith(
-        color: mtpColors(context).onBackground?.withAlpha(100),
+        color: mtpColors(context).onBackground,
         fontWeight: FontWeight.w200,
       );
   late final TextStyle? textStyle = hintStyle?.copyWith(
     color: mtpColors(context).onBackground,
-    fontWeight: FontWeight.normal,
   );
   late final TextStyle? hintFocusStyle = hintStyle?.copyWith(
-    fontWeight: FontWeight.normal,
+    color: mtpColors(context).onBackground?.withAlpha(100),
   );
 
   UserInput(

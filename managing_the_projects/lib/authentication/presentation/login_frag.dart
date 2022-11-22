@@ -27,16 +27,18 @@ class _LoginFragState extends State<LoginFrag> with MtpAliases {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.stretch,
       children: [
-        SizedBox(height: height(context) / 20),
-        Text(
-          "LOGIN",
-          style: textTheme(context).headlineLarge?.copyWith(
-                fontWeight: FontWeight.bold,
-                color: mtpColors(context).onBackground,
-                decoration: TextDecoration.underline,
-              ),
+        SizedBox(height: largeGap(context)),
+        Padding(
+          padding: EdgeInsets.symmetric(horizontal: largeIndent(context)),
+          child: Text(
+            "LOGIN",
+            style: textTheme(context).headlineLarge?.copyWith(
+                  fontWeight: FontWeight.w400,
+                  color: mtpColors(context).onBackground,
+                ),
+          ),
         ),
-        SizedBox(height: height(context) / 15),
+        SizedBox(height: height(context) / 40),
         // USERNAME
         UserInput(context, controller: _username, hint: "Username", focusNode: _usernameFN, obscureText: false),
         // PASSWORD
@@ -48,7 +50,7 @@ class _LoginFragState extends State<LoginFrag> with MtpAliases {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.symmetric(horizontal: width(context) / 20),
+      padding: EdgeInsets.symmetric(horizontal: mediumIndent(context)),
       child: _body(),
     );
   }

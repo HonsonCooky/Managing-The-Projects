@@ -67,6 +67,6 @@ extension MtpRouteExt on MtpRoute {
       case MtpRoute.settings:
         break;
     }
-    return const UnknownRouteFrag();
+    return UnknownRouteFrag();
   }
 }

@@ -12,30 +12,28 @@ class AuthPage extends StatefulWidget {
 }
 
 class _AuthPageState extends State<AuthPage> with MtpAliases {
-
   Widget _title() {
-    return Container(
-      height: height(context) / 3,
-      decoration: BoxDecoration(
-        color: mtpColors(context).primary,
-        borderRadius: const BorderRadius.vertical(bottom: Radius.circular(20)),
-      ),
-      child: Padding(
-        padding: EdgeInsets.all(width(context) / 10),
-        child: FittedBox(
-          fit: BoxFit.fitWidth,
-          child: Text(
-            "BARELY\nMANAGING",
-            style: textTheme(context).displayMedium?.copyWith(
-                  fontWeight: FontWeight.w300,
-                  color: mtpColors(context).onPrimary,
-                ),
+    return SafeArea(
+      child: Container(
+        height: height(context) / 3,
+        decoration: BoxDecoration(
+          color: mtpColors(context).primary,
+          borderRadius: BorderRadius.vertical(bottom: Radius.circular(borderRadiusSize)),
+        ),
+        child: Padding(
+          padding: EdgeInsets.symmetric(horizontal: smallIndent(context)),
+          child: FittedBox(
+            fit: BoxFit.fitWidth,
+            child: Text(
+              "BARELY\nMANAGING",
+              style: textTheme(context).displayMedium?.copyWith(color: mtpColors(context).onPrimary),
+            ),
           ),
         ),
       ),
     );
   }
-  
+
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
@@ -48,7 +46,9 @@ class _AuthPageState extends State<AuthPage> with MtpAliases {
             mainAxisAlignment: MainAxisAlignment.end,
             children: [
               _title(),
-              const Flexible(child: LoginFrag()),
+              const Flexible(
+                child: LoginFrag(),
+              ),
             ],
           ),
         ),
