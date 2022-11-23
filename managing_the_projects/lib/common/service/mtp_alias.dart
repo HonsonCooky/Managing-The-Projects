@@ -26,5 +26,5 @@ mixin MtpAliases {
 
   double smallGap(BuildContext context) => (isPortrait(context) ? height(context) : width(context)) / 40;
 
-  final double borderRadiusSize = 20;
+  static const double borderRadiusSize = 20;
 }

@@ -1,9 +1,9 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 
-class DismissBackground extends StatelessWidget {
+class MtpDismiss extends StatelessWidget {
   final Widget child;
 
-  const DismissBackground({super.key, required this.child});
+  const MtpDismiss({super.key, required this.child});
   
   @override
   Widget build(BuildContext context) {
