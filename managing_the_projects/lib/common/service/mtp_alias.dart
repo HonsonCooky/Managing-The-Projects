@@ -1,8 +1,7 @@
-import 'package:flutter/material.dart';
-import 'package:managing_the_projects/common/model/theme_model.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 mixin MtpAliases {
-  MtpColors mtpColors(BuildContext context) => Theme.of(context).extension<MtpColors>()!;
+  NeumorphicThemeData mtpTheme(BuildContext context) => NeumorphicTheme.currentTheme(context);
 
   Orientation orientation(BuildContext context) => MediaQuery.of(context).orientation;
 

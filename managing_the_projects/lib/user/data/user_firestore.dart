@@ -1,3 +1,1 @@
-class UserFirestore {
-  
-}
+class UserFirestore {}

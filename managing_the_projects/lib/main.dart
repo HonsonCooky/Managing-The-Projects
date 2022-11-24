@@ -1,5 +1,5 @@
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:managing_the_projects/authentication/presentation/auth_spa.dart';
 import 'package:managing_the_projects/user/services/user_change_manager.dart';
 import 'package:provider/provider.dart';
@@ -23,13 +23,13 @@ class MtpApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => CurrentUserManager()),
       ],
       child: Consumer<CurrentUserManager>(
-        builder: (context, userManager, child) => MaterialApp(
+        builder: (context, userManager, child) => NeumorphicApp(
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
           home: userManager.currentUser == null ? const AuthSpa() : Container(color: Colors.pink,),
-          themeMode: userManager.currentUser?.theme,
-          theme: lightTheme,
-          darkTheme: darkTheme,
+          themeMode: userManager.currentUser?.theme ?? ThemeMode.system,
+          theme: lightNeuTheme,
+          darkTheme: darkNeuTheme,
         ),
       ),
     );
