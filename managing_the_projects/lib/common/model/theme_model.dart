@@ -6,6 +6,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
 const lightNeuTheme = NeumorphicThemeData(
   baseColor: Color(0xffe1d9cf),
+  accentColor: Color(0xffBDA8A1),
   shadowLightColor: Color(0xfffaf9f7),
   shadowDarkColor: Color(0xff3c3225),
   defaultTextColor: Color(0xff231d15),

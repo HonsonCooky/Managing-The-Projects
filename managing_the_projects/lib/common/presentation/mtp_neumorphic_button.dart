@@ -19,16 +19,21 @@ class MtpNeumorphicButton extends StatelessWidget with MtpAliases {
       child: FittedBox(
         fit: BoxFit.scaleDown,
         child: ConstrainedBox(
-          constraints: BoxConstraints(minWidth: width(context) / 3),
+          constraints: BoxConstraints(
+            minWidth: width(context) / 3,
+            maxHeight: textTheme(context).titleMedium!.fontSize! * 1.5,
+          ),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(
                 text,
-                style: textTheme(context).titleLarge?.copyWith(
-                  color: mtpTheme(context).defaultTextColor,
-                ),
+                style: textTheme(context).titleMedium?.copyWith(
+                      color: mtpTheme(context).defaultTextColor,
+                    ),
               ),
+              const SizedBox(width: 10),
               icon ?? const SizedBox()
             ],
           ),

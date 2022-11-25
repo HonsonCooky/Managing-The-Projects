@@ -24,16 +24,30 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     SignupPage(changePage: _changePage),
   ];
 
+  PreferredSizeWidget _logo() {
+    return PreferredSize(
+      preferredSize: Size(width(context), height(context) / 4),
+      child: Container(),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return MtpOverlay(
       child: MtpDismiss(
         child: Scaffold(
-          body: PageView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: _pageController,
-            itemCount: _pages.length,
-            itemBuilder: (_, index) => _pages[index],
+          appBar: _logo(),
+          body: Column(
+            children: [
+              Expanded(
+                child: PageView.builder(
+                  physics: const NeverScrollableScrollPhysics(),
+                  controller: _pageController,
+                  itemCount: _pages.length,
+                  itemBuilder: (_, index) => _pages[index],
+                ),
+              ),
+            ],
           ),
         ),
       ),

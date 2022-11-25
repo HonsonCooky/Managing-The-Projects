@@ -14,14 +14,14 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> with MtpAliases {
-  final _username = TextEditingController();
+  final _email = TextEditingController();
   final _password = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
     return ListView(
       children: [
-        SizedBox(height: height(context) / 5),
+        SizedBox(height: height(context) / 20),
         Padding(
           padding: EdgeInsets.symmetric(horizontal: width(context) / 15),
           child: Column(
@@ -35,7 +35,7 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                     ),
               ),
               SizedBox(height: height(context) / 40),
-              MtpNeumorphicTextfield(label: "Username", controller: _username),
+              MtpNeumorphicTextfield(label: "Email", controller: _email),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Password", controller: _password),
               FittedBox(
@@ -54,6 +54,7 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                     text: "LOGIN",
                     icon: Icon(
                       Icons.login,
+                      size: textTheme(context).titleMedium?.fontSize,
                       color: mtpTheme(context).defaultTextColor,
                     ),
                     onPressed: () {},
