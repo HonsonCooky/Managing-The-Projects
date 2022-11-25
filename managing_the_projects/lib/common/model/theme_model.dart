@@ -5,9 +5,10 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 /// --------------------------------------------------------------------------------------------------------------------
 
 const lightNeuTheme = NeumorphicThemeData(
-  baseColor: Color(0xffE0E5EC),
-  accentColor: Color(0xffbce7d9),
-  borderColor: Color(0xff4c5175),
+  baseColor: Color(0xffe1d9cf),
+  shadowLightColor: Color(0xfffaf9f7),
+  shadowDarkColor: Color(0xff3c3225),
+  defaultTextColor: Color(0xff231d15),
 );
 
 /// --------------------------------------------------------------------------------------------------------------------
@@ -15,5 +16,4 @@ const lightNeuTheme = NeumorphicThemeData(
 /// --------------------------------------------------------------------------------------------------------------------
 
 const darkNeuTheme = NeumorphicThemeData(
-  baseColor: Color(0Xff130f40),
 );

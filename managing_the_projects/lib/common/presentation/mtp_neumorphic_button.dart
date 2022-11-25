@@ -11,7 +11,10 @@ class MtpNeumorphicButton extends StatelessWidget with MtpAliases {
   @override
   Widget build(BuildContext context) {
     return NeumorphicButton(
-      style: const NeumorphicStyle(depth: 3, boxShape: NeumorphicBoxShape.stadium()),
+      style: const NeumorphicStyle(
+        depth: 3,
+        boxShape: NeumorphicBoxShape.stadium(),
+      ),
       onPressed: onPressed,
       child: FittedBox(
         fit: BoxFit.scaleDown,
@@ -22,7 +25,9 @@ class MtpNeumorphicButton extends StatelessWidget with MtpAliases {
             children: [
               Text(
                 text,
-                style: textTheme(context).titleLarge?.copyWith(color: mtpTheme(context).borderColor),
+                style: textTheme(context).titleLarge?.copyWith(
+                  color: mtpTheme(context).defaultTextColor,
+                ),
               ),
               icon ?? const SizedBox()
             ],
