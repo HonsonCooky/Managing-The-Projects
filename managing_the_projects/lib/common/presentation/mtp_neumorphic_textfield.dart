@@ -1,4 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:managing_the_projects/common/model/theme_model.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
 class MtpNeumorphicTextfield extends StatefulWidget {
@@ -25,12 +26,15 @@ class _MtpNeumorphicTextfieldState extends State<MtpNeumorphicTextfield>
               fontWeight: FontWeight.w400,
               color: mtpTheme(context).defaultTextColor,
             ),
+        cursorColor: mtpTheme(context).accentColor,
         decoration: InputDecoration(
           hintText: widget.label,
           hintStyle: textTheme(context).titleMedium?.copyWith(
                 fontWeight: FontWeight.w400,
                 color: mtpTheme(context).defaultTextColor.withAlpha(120),
               ),
+          filled: true,
+          fillColor: lighten(mtpTheme(context).baseColor, 0.02),
           isDense: true,
           contentPadding: EdgeInsets.symmetric(
             horizontal: width(context) / 20,

@@ -15,7 +15,7 @@ class _MtpOverlayState extends State<MtpOverlay> with MtpAliases {
   @override
   Widget build(BuildContext context) {
     return AnnotatedRegion<SystemUiOverlayStyle>(
-      value: SystemUiOverlayStyle(statusBarColor: mtpTheme(context).borderColor),
+      value: SystemUiOverlayStyle(statusBarColor: mtpTheme(context).accentColor),
       child: SafeArea(child: widget.child),
     );
   }

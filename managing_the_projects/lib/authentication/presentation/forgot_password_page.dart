@@ -4,20 +4,17 @@ import 'package:managing_the_projects/common/presentation/mtp_neumorphic_textfie
 import 'package:managing_the_projects/common/presentation/mtp_text_button.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
-class SignupPage extends StatefulWidget {
+class ForgotPasswordPage extends StatefulWidget {
   final void Function(int index) changePage;
 
-  const SignupPage({super.key, required this.changePage});
+  const ForgotPasswordPage({super.key, required this.changePage});
 
   @override
-  State<StatefulWidget> createState() => _SignupPageState();
+  State<StatefulWidget> createState() => _ForgotPasswordPageState();
 }
 
-class _SignupPageState extends State<SignupPage> with MtpAliases {
+class _ForgotPasswordPageState extends State<ForgotPasswordPage> with MtpAliases {
   final _email = TextEditingController();
-  final _username = TextEditingController();
-  final _password = TextEditingController();
-  final _password2 = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -30,7 +27,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               Text(
-                "SIGNUP",
+                "FORGOT\nPASSWORD",
                 style: textTheme(context).displayMedium?.copyWith(
                       fontWeight: FontWeight.w200,
                       color: mtpTheme(context).defaultTextColor,
@@ -38,18 +35,12 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               ),
               SizedBox(height: height(context) / 40),
               MtpNeumorphicTextfield(label: "Email", controller: _email),
-              SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Username", controller: _username),
-              SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Password", controller: _password),
-              SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Confirm Password", controller: _password2),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   SizedBox(height: height(context) / 20),
                   MtpNeumorphicButton(
-                    text: "SIGNUP",
+                    text: "SEND EMAIL",
                     icon: Icon(
                       Icons.person_add,
                       size: textTheme(context).titleMedium?.fontSize,
@@ -58,7 +49,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
                     onPressed: () {},
                   ),
                   MtpTextButton(
-                    text: "Login",
+                    text: "Back",
                     onPressed: () => widget.changePage(1),
                   ),
                 ],

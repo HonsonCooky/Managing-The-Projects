@@ -43,7 +43,7 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                 alignment: Alignment.centerLeft,
                 child: MtpTextButton(
                   text: "Forgot Password?",
-                  onPressed: () {},
+                  onPressed: () => widget.changePage(0),
                 ),
               ),
               Column(
@@ -61,7 +61,7 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                   ),
                   MtpTextButton(
                     text: "Sign up",
-                    onPressed: () => widget.changePage(1),
+                    onPressed: () => widget.changePage(2),
                   ),
                 ],
               )
