@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_button.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_textfield.dart';
+import 'package:managing_the_projects/common/presentation/mtp_profile.dart';
 import 'package:managing_the_projects/common/presentation/mtp_text_button.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
@@ -37,6 +40,8 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
                     ),
               ),
               SizedBox(height: height(context) / 40),
+              MtpProfile(onImageUpdate: (File update) {}),
+              SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Email", controller: _email),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Username", controller: _username),

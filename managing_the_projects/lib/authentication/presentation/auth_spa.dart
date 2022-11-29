@@ -45,17 +45,11 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
       child: MtpDismiss(
         child: Scaffold(
           appBar: _logo(),
-          body: Column(
-            children: [
-              Expanded(
-                child: PageView.builder(
-                  physics: const NeverScrollableScrollPhysics(),
-                  controller: _pageController,
-                  itemCount: _pages.length,
-                  itemBuilder: (_, index) => _pages[index],
-                ),
-              ),
-            ],
+          body: PageView.builder(
+            physics: const NeverScrollableScrollPhysics(),
+            controller: _pageController,
+            itemCount: _pages.length,
+            itemBuilder: (_, index) => _pages[index],
           ),
         ),
       ),

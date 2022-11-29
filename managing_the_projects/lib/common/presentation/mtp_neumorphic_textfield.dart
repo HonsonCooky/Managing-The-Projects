@@ -34,7 +34,7 @@ class _MtpNeumorphicTextfieldState extends State<MtpNeumorphicTextfield>
                 color: mtpTheme(context).defaultTextColor.withAlpha(120),
               ),
           filled: true,
-          fillColor: lighten(mtpTheme(context).baseColor, 0.02),
+          fillColor: lighten(mtpTheme(context).baseColor).withAlpha(20),
           isDense: true,
           contentPadding: EdgeInsets.symmetric(
             horizontal: width(context) / 20,
