@@ -18,7 +18,7 @@ class _MtpNeumorphicTextfieldState extends State<MtpNeumorphicTextfield>
   @override
   Widget build(BuildContext context) {
     return Neumorphic(
-      style: const NeumorphicStyle(depth: -3, boxShape: NeumorphicBoxShape.stadium()),
+      style: const NeumorphicStyle(depth: -3, boxShape: NeumorphicBoxShape.stadium(), intensity: 1),
       child: TextField(
         obscureText: widget.canObscure,
         controller: widget.controller,

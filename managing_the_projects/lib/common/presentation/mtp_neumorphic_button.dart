@@ -11,9 +11,11 @@ class MtpNeumorphicButton extends StatelessWidget with MtpAliases {
   @override
   Widget build(BuildContext context) {
     return NeumorphicButton(
+      margin: const EdgeInsets.symmetric(vertical: 3.0),
       style: const NeumorphicStyle(
         depth: 3,
         boxShape: NeumorphicBoxShape.stadium(),
+        intensity: 0.5,
       ),
       onPressed: onPressed,
       child: FittedBox(

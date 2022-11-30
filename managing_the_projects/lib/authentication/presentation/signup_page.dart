@@ -21,6 +21,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
   final _username = TextEditingController();
   final _password = TextEditingController();
   final _password2 = TextEditingController();
+  File? _currentImage;
 
   @override
   Widget build(BuildContext context) {
@@ -40,7 +41,11 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
                     ),
               ),
               SizedBox(height: height(context) / 40),
-              MtpProfile(onImageUpdate: (File update) {}),
+              MtpProfile(
+                currentImage: _currentImage,
+                onImageUpdate: (File update) => setState(() => _currentImage = update),
+                deleteImage: () => setState(() => _currentImage = null),
+              ),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Email", controller: _email),
               SizedBox(height: height(context) / 80),
