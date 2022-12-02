@@ -23,6 +23,14 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
   final _password2 = TextEditingController();
   File? _currentImage;
 
+  Future<void> _onImageUpdate(File imageUpdate) async {
+    setState(() => _currentImage = imageUpdate);
+  }
+
+  Future<void> _onImageDelete() async {
+    setState(() => _currentImage = null);
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
@@ -43,8 +51,9 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               SizedBox(height: height(context) / 40),
               MtpProfile(
                 currentImage: _currentImage,
-                onImageUpdate: (File update) => setState(() => _currentImage = update),
-                deleteImage: () => setState(() => _currentImage = null),
+                onImageUpdate: _onImageUpdate,
+                onImageDelete: _onImageDelete,
+                canAlter: true,
               ),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Email", controller: _email),

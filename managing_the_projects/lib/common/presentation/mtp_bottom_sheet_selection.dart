@@ -25,15 +25,16 @@ class MtpBottomSheetSelection extends StatelessWidget with MtpAliases {
         onTap: onTap,
         splashColor: splashColor ?? mtpTheme(context).accentColor,
         child: Container(
-          margin: const EdgeInsets.all(12.0),
+          margin: EdgeInsets.all(textTheme(context).bodyLarge!.fontSize!),
           child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Icon(
                 leadingIcon,
                 color: textColor ?? mtpTheme(context).defaultTextColor,
                 size: textTheme(context).bodyLarge!.fontSize! * 1.5,
               ),
-              const SizedBox(width: 10),
+              SizedBox(width: textTheme(context).bodyLarge!.fontSize),
               Text(
                 text,
                 style: textTheme(context).bodyLarge?.copyWith(color: textColor ?? mtpTheme(context).defaultTextColor),
