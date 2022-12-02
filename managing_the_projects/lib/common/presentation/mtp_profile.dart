@@ -30,7 +30,12 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
   bool _forwardQueued = false;
   bool _takeAction = false;
   late bool _loading = widget.loading ?? false;
-  late final _popUp = AnimationController(vsync: this, duration: Neumorphic.DEFAULT_DURATION);
+  late final _popUp = AnimationController(
+    vsync: this,
+    duration: Duration(
+      milliseconds: Neumorphic.DEFAULT_DURATION.inMilliseconds * 2,
+    ),
+  );
   late final _animation =
       AnimationController(vsync: this, lowerBound: 0, upperBound: 3, value: 3, duration: Neumorphic.DEFAULT_DURATION);
 
