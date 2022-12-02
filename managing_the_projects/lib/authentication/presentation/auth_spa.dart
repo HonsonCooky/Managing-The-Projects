@@ -18,8 +18,11 @@ class AuthSpa extends StatefulWidget {
 class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, MtpAliases {
   final PageController _pageController = PageController(initialPage: 1);
 
-  void _changePage(int index) =>
-      _pageController.animateToPage(index, duration: const Duration(milliseconds: 400), curve: Curves.easeIn);
+  void _changePage(int index) => _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 400),
+        curve: Curves.easeIn,
+      );
 
   late final List<Widget> _pages = [
     ForgotPasswordPage(changePage: _changePage),
@@ -27,15 +30,38 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     SignupPage(changePage: _changePage),
   ];
 
-  PreferredSizeWidget _logo() {
-    return PreferredSize(
-      preferredSize: Size(width(context), height(context) / 4),
-      child: Column(
-        children: [
-          SizedBox(height: height(context) / 20),
-          const Expanded(child: MtpLogo()),
-        ],
-      ),
+  Widget _logo() {
+    return Container(
+      width: width(context) / (isPortrait(context) ? 1 : 3),
+      padding: EdgeInsets.only(top: height(context) / 20),
+      child: const MtpLogo(),
+    );
+  }
+
+  Widget _pageBody() {
+    return PageView.builder(
+      physics: const NeverScrollableScrollPhysics(),
+      controller: _pageController,
+      itemCount: _pages.length,
+      itemBuilder: (_, index) => _pages[index],
+    );
+  }
+
+  Widget _portraitMode() {
+    return Column(
+      children: [
+        _logo(),
+        Expanded(child: _pageBody()),
+      ],
+    );
+  }
+
+  Widget _landscapeMode() {
+    return Row(
+      children: [
+        _logo(),
+        Expanded(child: _pageBody()),
+      ],
     );
   }
 
@@ -44,13 +70,7 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     return MtpOverlay(
       child: MtpDismiss(
         child: Scaffold(
-          appBar: _logo(),
-          body: PageView.builder(
-            physics: const NeverScrollableScrollPhysics(),
-            controller: _pageController,
-            itemCount: _pages.length,
-            itemBuilder: (_, index) => _pages[index],
-          ),
+          body: isPortrait(context) ? _portraitMode() : _landscapeMode(),
         ),
       ),
     );
