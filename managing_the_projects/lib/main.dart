@@ -26,7 +26,7 @@ class MtpApp extends StatelessWidget {
         builder: (context, userManager, child) => NeumorphicApp(
           debugShowCheckedModeBanner: false,
           debugShowMaterialGrid: false,
-          home: userManager.currentUser == null ? const AuthSpa() : Container(color: Colors.pink,),
+          home: userManager.currentUser == null ? const AuthSpa() : Container(color: Colors.pink),
           themeMode: userManager.currentUser?.theme ?? ThemeMode.system,
           theme: lightNeuTheme,
           darkTheme: darkNeuTheme,

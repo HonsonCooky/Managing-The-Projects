@@ -20,7 +20,7 @@ class _MtpPageIndicatorState extends State<MtpPageIndicator> with MtpAliases {
   void initState() {
     super.initState();
     widget.controller.addListener(() {
-      if (widget.controller.page == null) return;
+      if (!mounted || widget.controller.page == null) return;
       if (!_wasClicked && _selectedPage != widget.controller.page!.round()) {
         setState(() => _selectedPage = widget.controller.page!.round());
       } else if (_selectedPage - widget.controller.page! == 0) {

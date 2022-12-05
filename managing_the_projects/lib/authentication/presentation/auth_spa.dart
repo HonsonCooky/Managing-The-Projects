@@ -43,10 +43,16 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     return Stack(
       alignment: Alignment.bottomCenter,
       children: [
-        PageView(
-          controller: _pageController,
-          scrollDirection: Axis.horizontal,
-          children: _pages,
+        NotificationListener<OverscrollIndicatorNotification>(
+          onNotification: (overscroll) {
+            overscroll.disallowIndicator();
+            return true;
+          },
+          child: PageView(
+            controller: _pageController,
+            scrollDirection: Axis.horizontal,
+            children: _pages,
+          ),
         ),
         MtpPageIndicator(
           controller: _pageController,
