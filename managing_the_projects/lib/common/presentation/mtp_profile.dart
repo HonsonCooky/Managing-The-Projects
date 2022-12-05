@@ -192,7 +192,7 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: width(context) / (isPortrait(context) ? 3 : 6),
+      height: 120,
       child: Neumorphic(
         style: NeumorphicStyle(
           boxShape: const NeumorphicBoxShape.circle(),

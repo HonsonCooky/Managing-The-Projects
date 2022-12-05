@@ -6,6 +6,7 @@ import 'package:managing_the_projects/authentication/presentation/signup_page.da
 import 'package:managing_the_projects/common/presentation/mtp_dismissable.dart';
 import 'package:managing_the_projects/common/presentation/mtp_logo.dart';
 import 'package:managing_the_projects/common/presentation/mtp_overlay.dart';
+import 'package:managing_the_projects/common/presentation/mtp_page_indicator.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
 class AuthSpa extends StatefulWidget {
@@ -39,11 +40,20 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
   }
 
   Widget _pageBody() {
-    return PageView.builder(
-      physics: const NeverScrollableScrollPhysics(),
-      controller: _pageController,
-      itemCount: _pages.length,
-      itemBuilder: (_, index) => _pages[index],
+    return Stack(
+      alignment: Alignment.bottomCenter,
+      children: [
+        PageView(
+          controller: _pageController,
+          scrollDirection: Axis.horizontal,
+          children: _pages,
+        ),
+        MtpPageIndicator(
+          controller: _pageController,
+          numberOfPages: _pages.length,
+          changePage: _changePage,
+        ),
+      ],
     );
   }
 

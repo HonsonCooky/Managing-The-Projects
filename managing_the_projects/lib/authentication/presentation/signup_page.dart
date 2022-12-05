@@ -80,6 +80,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
                     text: "Login",
                     onPressed: () => widget.changePage(1),
                   ),
+                  const SizedBox(height: 20),
                 ],
               )
             ],

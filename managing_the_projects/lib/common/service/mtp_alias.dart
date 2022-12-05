@@ -24,6 +24,8 @@ mixin MtpAliases {
   double mediumGap(BuildContext context) => (isPortrait(context) ? height(context) : width(context)) / 20;
 
   double smallGap(BuildContext context) => (isPortrait(context) ? height(context) : width(context)) / 40;
+  
+  bool keyboardOpen() => WidgetsBinding.instance.window.viewInsets.bottom > 0.0;
 
   static const double borderRadiusSize = 20;
   

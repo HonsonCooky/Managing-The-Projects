@@ -64,7 +64,8 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                     onPressed: () => widget.changePage(2),
                   ),
                 ],
-              )
+              ),
+              const SizedBox(height: 20),
             ],
           ),
         ),

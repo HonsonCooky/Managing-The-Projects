@@ -8,7 +8,7 @@ class MtpLogo extends StatelessWidget with MtpAliases {
   Widget build(BuildContext context) {
     return NeumorphicIcon(
       Icons.backup_table,
-      size: height(context) / 5,
+      size: isPortrait(context) ? height(context) / 5 : width(context) / 3.5,
       style: const NeumorphicStyle(depth: 3, intensity: 0.5),
     );
   }

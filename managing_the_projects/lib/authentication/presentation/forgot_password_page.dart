@@ -52,6 +52,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> with MtpAliases
                     text: "Back",
                     onPressed: () => widget.changePage(1),
                   ),
+                  const SizedBox(height: 20),
                 ],
               )
             ],
