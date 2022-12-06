@@ -4,7 +4,7 @@ import 'package:json_annotation/json_annotation.dart';
 part 'user_model.g.dart';
 
 @JsonSerializable()
-class UserModel extends ChangeNotifier {
+class UserModel extends JsonSerializable {
   String uuid;
   String name;
   ThemeMode theme;
@@ -17,7 +17,9 @@ class UserModel extends ChangeNotifier {
     required this.onBoarded,
   });
 
+  @override
   factory UserModel.fromJson(Map<String, dynamic> json) => _$UserModelFromJson(json);
 
+  @override
   Map<String, dynamic> toJson() => _$UserModelToJson(this);
 }
