@@ -1,4 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:managing_the_projects/user/services/current_user.dart';
 
 mixin MtpAliases {
   NeumorphicThemeData mtpTheme(BuildContext context) => NeumorphicTheme.currentTheme(context);
@@ -14,7 +15,7 @@ mixin MtpAliases {
   TextTheme textTheme(BuildContext context) => Theme.of(context).textTheme;
 
   double largeIndent(BuildContext context) => (isPortrait(context) ? width(context) : height(context)) / 10;
-  
+
   double mediumIndent(BuildContext context) => (isPortrait(context) ? width(context) : height(context)) / 15;
 
   double smallIndent(BuildContext context) => (isPortrait(context) ? width(context) : height(context)) / 20;
@@ -24,11 +25,19 @@ mixin MtpAliases {
   double mediumGap(BuildContext context) => (isPortrait(context) ? height(context) : width(context)) / 20;
 
   double smallGap(BuildContext context) => (isPortrait(context) ? height(context) : width(context)) / 40;
-  
+
   bool keyboardOpen() => WidgetsBinding.instance.window.viewInsets.bottom > 0.0;
 
+  bool verificationRequired(CurrentUserManager userManager) =>
+      userManager.currentUser != null && !userManager.currentUser!.emailVerified;
+
+  bool verified(CurrentUserManager userManager) =>
+      userManager.currentUser != null && userManager.currentUser!.emailVerified;
+
+  bool authenticated(CurrentUserManager userManager) => verified(userManager) && userManager.cachedUserModel != null;
+
   static const double borderRadiusSize = 20;
-  
+
   Color darken(Color color, [double amount = .1]) {
     assert(amount >= 0 && amount <= 1);
 

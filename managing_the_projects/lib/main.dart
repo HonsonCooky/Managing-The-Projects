@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:managing_the_projects/authentication/presentation/auth_spa.dart';
+import 'package:managing_the_projects/common/service/mtp_alias.dart';
 import 'package:managing_the_projects/user/services/current_user.dart';
 import 'package:provider/provider.dart';
 
@@ -15,7 +16,7 @@ void main() async {
   runApp(const MtpApp());
 }
 
-class MtpApp extends StatelessWidget {
+class MtpApp extends StatelessWidget with MtpAliases {
   const MtpApp({super.key});
 
   @override
@@ -29,7 +30,7 @@ class MtpApp extends StatelessWidget {
           return NeumorphicApp(
             debugShowCheckedModeBanner: false,
             debugShowMaterialGrid: false,
-            home: userManager.currentUser == null ? const AuthSpa() : Container(color: Colors.pink),
+            home: !authenticated(userManager) ? const AuthSpa() : Container(color: Colors.pink),
             themeMode: userManager.cachedUserModel?.theme ?? ThemeMode.system,
             theme: lightNeuTheme,
             darkTheme: darkNeuTheme,

@@ -13,14 +13,13 @@ class AuthManager {
     await user.sendEmailVerification();
   }
 
-  Future<void> verify(String email, String password) async {
-    var cred = await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-    var user = cred.user;
+  Future<void> verify() async {
+    var user = FirebaseAuth.instance.currentUser;
     if (user == null) throw Exception("Unable to retrieve user from verification request");
     await user.reload();
     if (!user.emailVerified) {
       await user.sendEmailVerification();
-      throw Exception("$email has not been verified yet. Check your emails for a verification message.");
+      throw Exception("${user.email} has not been verified yet. Check your emails for a verification message.");
     }
   }
 
@@ -29,18 +28,6 @@ class AuthManager {
     var user = cred.user;
     if (user == null) throw Exception("Unable to retrieve user from login request");
     if (!user.emailVerified) throw Exception("$email has not been verified yet.");
-  }
-
-  Future<void> reauthenticate(User user, {String? email, String? password}) async {
-    if (GoogleSignIn().currentUser != null) {
-      await user.reauthenticateWithPopup(GoogleAuthProvider());
-    } else if (email != null && password != null) {
-      await FirebaseAuth.instance.signInWithEmailAndPassword(email: email, password: password);
-    }
-  }
-
-  Future<void> passwordReset(String email) async {
-    await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
   }
 
   Future<void> signInWithGoogle() async {
@@ -53,5 +40,23 @@ class AuthManager {
     await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
+  Future<void> reauthenticate({String? password}) async {
+    if (GoogleSignIn().currentUser != null) {
+      await FirebaseAuth.instance.currentUser!.reauthenticateWithPopup(GoogleAuthProvider());
+    } else if (password != null) {
+      await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: FirebaseAuth.instance.currentUser!.email!,
+        password: password,
+      );
+    } else {
+      throw Exception('Unable to reauthenticate without current password');
+    }
+  }
 
+  Future<void> passwordReset() async {
+    if (GoogleSignIn().currentUser != null) {
+      throw Exception("Unable to reset password, as you're signed in with your google account");
+    }
+    await FirebaseAuth.instance.sendPasswordResetEmail(email: FirebaseAuth.instance.currentUser!.email!);
+  }
 }

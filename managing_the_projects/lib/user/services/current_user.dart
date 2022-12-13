@@ -1,10 +1,12 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:managing_the_projects/user/model/user_manager.dart';
+import 'package:managing_the_projects/user/data/user_manager.dart';
 import 'package:managing_the_projects/user/model/user_model.dart';
 
 class CurrentUserManager extends ChangeNotifier {
-  CurrentUserManager._privateConstructor();
+  CurrentUserManager._privateConstructor() {
+    firebaseAuthListener(FirebaseAuth.instance.currentUser);
+  }
 
   static final CurrentUserManager instance = CurrentUserManager._privateConstructor();
 

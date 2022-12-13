@@ -8,6 +8,8 @@ import 'package:managing_the_projects/common/presentation/mtp_logo.dart';
 import 'package:managing_the_projects/common/presentation/mtp_overlay.dart';
 import 'package:managing_the_projects/common/presentation/mtp_page_indicator.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
+import 'package:managing_the_projects/user/services/current_user.dart';
+import 'package:provider/provider.dart';
 
 class AuthSpa extends StatefulWidget {
   const AuthSpa({super.key});
@@ -62,33 +64,44 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
       ],
     );
   }
+  
+  Widget _verificationBody() {
+    return Container(
+      color: Colors.pink,
+    );
+  }
 
-  Widget _portraitMode() {
+  Widget _portraitMode(bool verificationRequired) {
     return Column(
       children: [
         _logo(),
-        Expanded(child: _pageBody()),
+        Expanded(child: verificationRequired ? _verificationBody() : _pageBody()),
       ],
     );
   }
 
-  Widget _landscapeMode() {
+  Widget _landscapeMode(bool verificationRequired) {
     return Row(
       children: [
         _logo(),
-        Expanded(child: _pageBody()),
+        Expanded(child: verificationRequired ? _verificationBody() : _pageBody()),
       ],
     );
   }
 
   @override
   Widget build(BuildContext context) {
-    return MtpOverlay(
-      child: MtpDismiss(
-        child: Scaffold(
-          body: isPortrait(context) ? _portraitMode() : _landscapeMode(),
-        ),
-      ),
+    return Consumer<CurrentUserManager>(
+      builder: (context, userManager, child) {
+        var ver = verificationRequired(userManager);
+        return MtpOverlay(
+          child: MtpDismiss(
+            child: Scaffold(
+              body: isPortrait(context) ? _portraitMode(ver) : _landscapeMode(ver),
+            ),
+          ),
+        );
+      },
     );
   }
 }
