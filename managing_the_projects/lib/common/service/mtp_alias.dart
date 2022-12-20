@@ -36,6 +36,34 @@ mixin MtpAliases {
 
   bool authenticated(CurrentUserManager userManager) => verified(userManager) && userManager.cachedUserModel != null;
 
+  void _mtpSnack(BuildContext context, String msg, Color color, Color textColor) {
+    ScaffoldMessenger.of(context).clearSnackBars();
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: color,
+        dismissDirection: DismissDirection.horizontal,
+        duration: const Duration(milliseconds: 4000),
+        behavior: SnackBarBehavior.floating,
+        elevation: 6,
+        content: Text(
+          msg,
+          style: TextStyle(
+            color: textColor,
+          ),
+        ),
+      ),
+    );
+  }
+
+  void successSnack(BuildContext context, String msg) {
+    _mtpSnack(context, msg, mtpTheme(context).baseColor, mtpTheme(context).defaultTextColor);
+  }
+  
+  void errorSnack(BuildContext context, String msg) {
+    msg = msg.replaceAll("Exception: ", "Oh no!\n");
+    _mtpSnack(context, msg, mtpTheme(context).accentColor, mtpTheme(context).baseColor);
+  }
+
   static const double borderRadiusSize = 20;
 
   Color darken(Color color, [double amount = .1]) {

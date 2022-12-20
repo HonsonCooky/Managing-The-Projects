@@ -15,8 +15,7 @@ class CurrentUserManager extends ChangeNotifier {
 
   Future<void> firebaseAuthListener(User? user) async {
     currentUser = user;
-    cachedUserModel =
-        user != null ? await UserManager.instance.fromFirestore(user.uid).then((value) => value.data()) : null;
+    cachedUserModel = await UserManager.instance.get(user?.uid)?.then((value) => value.data());
     notifyListeners();
   }
 }

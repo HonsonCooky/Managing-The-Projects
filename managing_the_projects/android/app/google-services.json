@@ -14,6 +14,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "520180584514-78m55d35ui7hmh0jg2aitmvs2g0bn83p.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.honsoncooky.managing_the_projects",
+            "certificate_hash": "a9a70a5bf462d7ad62bee25c8131abe194ae213f"
+          }
+        },
+        {
           "client_id": "520180584514-m8jeb8ulnrt01cv08b31hp9eua12o9c8.apps.googleusercontent.com",
           "client_type": 3
         }

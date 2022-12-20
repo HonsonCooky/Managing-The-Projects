@@ -1,6 +1,9 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
+import 'package:flutter_neumorphic/flutter_neumorphic.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:managing_the_projects/authentication/services/signup.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_button.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_textfield.dart';
 import 'package:managing_the_projects/common/presentation/mtp_profile.dart';
@@ -18,12 +21,12 @@ class SignupPage extends StatefulWidget {
 
 class _SignupPageState extends State<SignupPage> with MtpAliases {
   final _email = TextEditingController();
-  final _username = TextEditingController();
+  final _name = TextEditingController();
   final _password = TextEditingController();
   final _password2 = TextEditingController();
-  File? _currentImage;
+  XFile? _currentImage;
 
-  Future<void> _onImageUpdate(File imageUpdate) async {
+  Future<void> _onImageUpdate(XFile imageUpdate) async {
     setState(() => _currentImage = imageUpdate);
   }
 
@@ -58,23 +61,64 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Email", controller: _email),
               SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Username", controller: _username),
+              MtpNeumorphicTextfield(label: "Username", controller: _name),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Password", controller: _password),
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Confirm Password", controller: _password2),
+              SizedBox(height: height(context) / 40),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                  SizedBox(height: height(context) / 20),
-                  MtpNeumorphicButton(
-                    text: "SIGNUP",
-                    icon: Icon(
-                      Icons.person_add,
-                      size: textTheme(context).titleMedium?.fontSize,
-                      color: mtpTheme(context).defaultTextColor,
-                    ),
-                    onPressed: () {},
+                  SizedBox(height: height(context) / 40),
+                  Row(
+                    children: [
+                      const Expanded(child: SizedBox()),
+                      MtpNeumorphicButton(
+                        text: "SIGNUP",
+                        icon: Icon(
+                          Icons.person_add,
+                          size: textTheme(context).titleMedium?.fontSize,
+                          color: mtpTheme(context).defaultTextColor,
+                        ),
+                        onPressed: () async {
+                          try {
+                            await attemptSignup(
+                              profileImage: _currentImage,
+                              email: _email.text,
+                              name: _name.text,
+                              password: _password.text,
+                              password2: _password2.text,
+                            );
+                          } catch (e) {
+                            errorSnack(context, "$e");
+                          }
+                        },
+                      ),
+                      Expanded(
+                        child: NeumorphicButton(
+                          style: NeumorphicStyle(
+                            depth: 3,
+                            intensity: 0.6,
+                            shape: NeumorphicShape.concave,
+                            boxShape: const NeumorphicBoxShape.circle(),
+                            color: mtpTheme(context).accentColor
+                          ),
+                          child: Text(
+                            "G+",
+                            textAlign: TextAlign.center,
+                            style: textTheme(context).titleLarge?.copyWith(color: mtpTheme(context).baseColor),
+                          ),
+                          onPressed: () async {
+                            try {
+                              await attemptGoogleSignup();
+                            } catch (e) {
+                              errorSnack(context, "$e");
+                            }
+                          },
+                        ),
+                      ),
+                    ],
                   ),
                   MtpTextButton(
                     text: "Login",

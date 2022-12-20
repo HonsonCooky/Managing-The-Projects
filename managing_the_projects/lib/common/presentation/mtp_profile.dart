@@ -6,8 +6,8 @@ import 'package:managing_the_projects/common/presentation/mtp_bottom_sheet_selec
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
 class MtpProfile extends StatefulWidget {
-  final File? currentImage;
-  final Future<void> Function(File update) onImageUpdate;
+  final XFile? currentImage;
+  final Future<void> Function(XFile update) onImageUpdate;
   final Future<void> Function() onImageDelete;
   final bool? loading;
   final bool canAlter;
@@ -36,21 +36,34 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
       milliseconds: Neumorphic.DEFAULT_DURATION.inMilliseconds * 2,
     ),
   );
-  late final _animation =
-      AnimationController(vsync: this, lowerBound: 0, upperBound: 3, value: 3, duration: Neumorphic.DEFAULT_DURATION);
+  
+  late final _animation = AnimationController(
+    vsync: this,
+    lowerBound: 0,
+    upperBound: 3,
+    value: 3,
+    duration: Neumorphic.DEFAULT_DURATION,
+  );
+  
+  File? _image(){
+    if (widget.currentImage == null) return null;
+    return File(widget.currentImage!.path);
+  }
 
   @override
   void initState() {
     super.initState();
     _animation.addListener(() {
       if (_forwardQueued && _animation.value == _animation.lowerBound) {
-        _animation.forward().then((value) {
-          if (_takeAction) _showOptions();
-          setState(() {
-            _forwardQueued = false;
-            _takeAction = false;
-          });
-        });
+        Future.delayed(Neumorphic.DEFAULT_DURATION).then((value) => {
+              _animation.forward().then((value) {
+                if (_takeAction) _showOptions();
+                setState(() {
+                  _forwardQueued = false;
+                  _takeAction = false;
+                });
+              })
+            });
       } else {
         setState(() {});
       }
@@ -86,7 +99,7 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
                 padding: const EdgeInsets.all(12.0),
                 child: Neumorphic(
                   style: const NeumorphicStyle(depth: 3, intensity: 0.6),
-                  child: Image.file(widget.currentImage!),
+                  child: Image.file(_image()!),
                 ),
               ),
             ),
@@ -102,7 +115,7 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
     if (image != null) {
       nav.pop();
       setState(() => _loading = true);
-      widget.onImageUpdate(File(image.path)).then((value) => setState(() => _loading = false));
+      widget.onImageUpdate(image).then((value) => setState(() => _loading = false));
     }
   }
 
@@ -159,7 +172,15 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
     return Center(
       child: NeumorphicIcon(
         Icons.image,
-        style: NeumorphicStyle(depth: _animation.value, intensity: 0.6),
+        style: NeumorphicStyle(
+          depth: _animation.value,
+          intensity: 0.6,
+          color: Color.lerp(
+            mtpTheme(context).baseColor.withAlpha(0),
+            mtpTheme(context).baseColor,
+            _animation.value / (_animation.upperBound - _animation.lowerBound),
+          ),
+        ),
         size: textTheme(context).bodyLarge!.fontSize! * 4,
       ),
     );
@@ -186,7 +207,7 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
         ? _loadingImage()
         : widget.currentImage == null
             ? _imageIcon()
-            : Image.file(widget.currentImage!);
+            : Image.file(_image()!);
   }
 
   @override

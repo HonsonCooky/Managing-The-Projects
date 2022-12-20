@@ -63,6 +63,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '520180584514',
     projectId: 'managing-the-projects',
     storageBucket: 'managing-the-projects.appspot.com',
+    androidClientId: '520180584514-78m55d35ui7hmh0jg2aitmvs2g0bn83p.apps.googleusercontent.com',
     iosClientId: '520180584514-66psgrhedpnqrkcpss346or5rr5bqsvc.apps.googleusercontent.com',
     iosBundleId: 'com.honsoncooky.managingTheProjects',
   );

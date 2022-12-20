@@ -13,8 +13,8 @@ class UserModel extends JsonSerializable {
   UserModel({
     required this.uuid,
     required this.name,
-    required this.theme,
-    required this.onBoarded,
+    this.theme = ThemeMode.system,
+    this.onBoarded = false,
   });
 
   @override

@@ -59,4 +59,6 @@ class AuthManager {
     }
     await FirebaseAuth.instance.sendPasswordResetEmail(email: FirebaseAuth.instance.currentUser!.email!);
   }
+  
+  Future<void>? delete() => FirebaseAuth.instance.currentUser?.delete();
 }
