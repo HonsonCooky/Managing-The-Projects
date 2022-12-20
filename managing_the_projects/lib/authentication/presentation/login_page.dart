@@ -37,7 +37,7 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
               SizedBox(height: height(context) / 40),
               MtpNeumorphicTextfield(label: "Email", controller: _email),
               SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Password", controller: _password),
+              MtpNeumorphicTextfield(label: "Password", controller: _password, canObscure: true),
               FittedBox(
                 fit: BoxFit.scaleDown,
                 alignment: Alignment.centerLeft,

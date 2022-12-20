@@ -4,6 +4,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:managing_the_projects/authentication/presentation/auth_spa.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
+import 'package:managing_the_projects/home/presentation/home_spa.dart';
 import 'package:managing_the_projects/user/services/current_user.dart';
 import 'package:provider/provider.dart';
 
@@ -32,7 +33,7 @@ class MtpApp extends StatelessWidget with MtpAliases {
           return NeumorphicApp(
             debugShowCheckedModeBanner: false,
             debugShowMaterialGrid: false,
-            home: !authenticated(userManager) ? const AuthSpa() : Container(color: Colors.pink),
+            home: !authenticated(userManager) ? const AuthSpa() : const HomeSpa(),
             themeMode: userManager.cachedUserModel?.theme ?? ThemeMode.system,
             theme: lightNeuTheme,
             darkTheme: darkNeuTheme,

@@ -1,10 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/foundation.dart';
 import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthManager {
   AuthManager._privateConstructor();
-
   static final instance = AuthManager._privateConstructor();
+  static final _googleSignIn = GoogleSignIn();
 
   Future<void> signup(String email, String password) async {
     var cred = await FirebaseAuth.instance.createUserWithEmailAndPassword(email: email, password: password);
@@ -31,7 +32,8 @@ class AuthManager {
   }
 
   Future<void> signInWithGoogle() async {
-    final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
+    await _googleSignIn.signOut().catchError((e){if (kDebugMode) print("$e");});
+    final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
       accessToken: googleAuth?.accessToken,
@@ -58,6 +60,11 @@ class AuthManager {
       throw Exception("Unable to reset password, as you're signed in with your google account");
     }
     await FirebaseAuth.instance.sendPasswordResetEmail(email: FirebaseAuth.instance.currentUser!.email!);
+  }
+  
+  Future<void> logout() async {
+    if (_googleSignIn.currentUser != null) await _googleSignIn.signOut();
+    await FirebaseAuth.instance.signOut();
   }
   
   Future<void>? delete() => FirebaseAuth.instance.currentUser?.delete();

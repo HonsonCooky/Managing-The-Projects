@@ -63,9 +63,9 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               SizedBox(height: height(context) / 80),
               MtpNeumorphicTextfield(label: "Username", controller: _name),
               SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Password", controller: _password),
+              MtpNeumorphicTextfield(label: "Password", controller: _password, canObscure: true),
               SizedBox(height: height(context) / 80),
-              MtpNeumorphicTextfield(label: "Confirm Password", controller: _password2),
+              MtpNeumorphicTextfield(label: "Confirm Password", controller: _password2, canObscure: true),
               SizedBox(height: height(context) / 40),
               Column(
                 crossAxisAlignment: CrossAxisAlignment.center,

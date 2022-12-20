@@ -19,6 +19,7 @@ class UserManager extends MtpManager<UserModel> {
 
   @override
   Future<void> create(UserModel value, String? imagePath) async {
+    print(docRef(value.uuid).path);
     await docRef(value.uuid).set(value);
   }
 
