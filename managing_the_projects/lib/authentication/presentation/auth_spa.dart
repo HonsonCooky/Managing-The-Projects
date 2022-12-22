@@ -21,6 +21,12 @@ class AuthSpa extends StatefulWidget {
 class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, MtpAliases {
   final PageController _pageController = PageController(initialPage: 1);
 
+  @override
+  void dispose() {
+    _pageController.dispose();
+    super.dispose();
+  }
+
   void _changePage(int index) => _pageController.animateToPage(
         index,
         duration: const Duration(milliseconds: 400),
@@ -64,7 +70,7 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
       ],
     );
   }
-  
+
   Widget _verificationBody() {
     return Container(
       color: Colors.pink,

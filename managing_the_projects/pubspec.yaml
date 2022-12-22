@@ -46,6 +46,9 @@ dependencies:
   google_sign_in: ^5.4.2
   firebase_app_check: ^0.1.1+6
   uuid: ^3.0.7
+  path_provider: ^2.0.11
+  http: ^0.13.5
+  firebase_storage: ^11.0.8
 
 dev_dependencies:
   flutter_test:

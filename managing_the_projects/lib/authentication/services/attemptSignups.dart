@@ -4,7 +4,6 @@ import 'package:managing_the_projects/authentication/data/auth_manager.dart';
 import 'package:managing_the_projects/user/data/user_manager.dart';
 import 'package:managing_the_projects/user/model/user_model.dart';
 import 'package:managing_the_projects/user/services/current_user.dart';
-import 'package:uuid/uuid.dart';
 
 Future<void> attemptSignup({
   XFile? profileImage,
@@ -24,7 +23,8 @@ Future<void> attemptSignup({
   UserModel? userModel;
   try {
     await AuthManager.instance.signup(email, password);
-    userModel = UserModel(uuid: const Uuid().v4(), name: name);
+    var curUser = CurrentUserManager.instance.currentUser!;
+    userModel = UserModel(uuid: curUser.uid, name: name);
     await UserManager.instance.create(userModel, profileImage?.path);
   } catch (e) {
     if (kDebugMode) print(e);
@@ -44,8 +44,8 @@ Future<void> attemptGoogleSignup() async {
   } catch (e) {
     if (kDebugMode) print(e);
     if ("$e".contains("At least one of ID token and access token is required")) return;
-    await AuthManager.instance.delete()?.catchError((e) {});
     if (userModel != null) await UserManager.instance.delete(userModel.uuid).catchError((e) {});
+    await AuthManager.instance.delete()?.catchError((e) {});
     rethrow;
   }
 }

@@ -15,6 +15,12 @@ class ForgotPasswordPage extends StatefulWidget {
 
 class _ForgotPasswordPageState extends State<ForgotPasswordPage> with MtpAliases {
   final _email = TextEditingController();
+  
+  @override
+  void dispose() {
+    _email.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
