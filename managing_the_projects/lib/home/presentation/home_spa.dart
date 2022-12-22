@@ -27,8 +27,8 @@ class _HomeSpaState extends State<HomeSpa> with MtpAliases {
       ),
     );
   }
-  
-  Widget _logout(){
+
+  Widget _logout() {
     return NeumorphicButton(
       child: Text("Logout"),
       onPressed: () => AuthManager.instance.logout(),

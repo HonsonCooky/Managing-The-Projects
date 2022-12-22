@@ -5,6 +5,14 @@ import 'package:managing_the_projects/user/data/user_manager.dart';
 import 'package:managing_the_projects/user/model/user_model.dart';
 import 'package:managing_the_projects/user/services/current_user.dart';
 
+Future<void> undo(Object e, UserModel? userModel) async {
+  if (kDebugMode) print(e);
+  if ("$e".contains("At least one of ID token and access token is required")) return;
+  if (userModel != null) await UserManager.instance.delete(userModel.uuid).catchError((e) {});
+  await AuthManager.instance.delete()?.catchError((e) {});
+  throw e;
+}
+
 Future<void> attemptSignup({
   XFile? profileImage,
   required String email,
@@ -27,10 +35,7 @@ Future<void> attemptSignup({
     userModel = UserModel(uuid: curUser.uid, name: name);
     await UserManager.instance.create(userModel, profileImage?.path);
   } catch (e) {
-    if (kDebugMode) print(e);
-    await AuthManager.instance.delete()?.catchError((e) {});
-    if (userModel != null) await UserManager.instance.delete(userModel.uuid).catchError((e) {});
-    rethrow;
+    await undo(e, userModel);
   }
 }
 
@@ -42,10 +47,6 @@ Future<void> attemptGoogleSignup() async {
     userModel = UserModel(uuid: curUser.uid, name: curUser.displayName ?? curUser.email!.split('@')[0]);
     await UserManager.instance.create(userModel, curUser.photoURL);
   } catch (e) {
-    if (kDebugMode) print(e);
-    if ("$e".contains("At least one of ID token and access token is required")) return;
-    if (userModel != null) await UserManager.instance.delete(userModel.uuid).catchError((e) {});
-    await AuthManager.instance.delete()?.catchError((e) {});
-    rethrow;
+    await undo(e, userModel);
   }
 }

@@ -8,12 +8,17 @@ class MtpImageManager {
   MtpImageManager._privateConstructor();
 
   static final instance = MtpImageManager._privateConstructor();
-  
+
   static final _storageRef = FirebaseStorage.instance.ref();
 
   Uri? _toUri(String path) {
     try {
-      return Uri.parse(path);
+      var uri = Uri.parse(path);
+      if (uri.host.isNotEmpty) {
+        return uri;
+      } else {
+        return null;
+      }
     } catch (e) {
       return null;
     }
@@ -43,10 +48,9 @@ class MtpImageManager {
     if (toUri != null) return _downloadImage(toUri, fileName);
     return _localImage(path, fileName);
   }
-  
+
   Future<void> uploadImage(File image, String filePath, String fileName) async {
     var childLoc = '$filePath/$fileName.png';
-    print(childLoc);
     await _storageRef.child(childLoc).putFile(image);
   }
 }

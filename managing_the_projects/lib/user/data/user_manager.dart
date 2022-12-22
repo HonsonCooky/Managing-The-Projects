@@ -12,11 +12,11 @@ class UserManager extends MtpManager<UserModel> {
   String collectionPath() => 'user';
 
   @override
-  UserModel? fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot) => UserModel.fromJson(snapshot.data()! );
+  UserModel? fromFirestore(DocumentSnapshot<Map<String, dynamic>> snapshot) => UserModel.fromJson(snapshot.data()!);
 
   @override
   Map<String, dynamic> toFirestore(UserModel? value) => value!.toJson();
-  
+
   Future<void> _profilePictureUpload(String imagePath, String uuid) async {
     var image = await MtpImageManager.instance.getImageFromRef(imagePath, uuid);
     var uploadPath = "${collectionPath()}/$uuid";
@@ -27,7 +27,7 @@ class UserManager extends MtpManager<UserModel> {
   @override
   Future<void> create(UserModel value, String? imagePath) async {
     await docRef(value.uuid).set(value);
-    
+
     // Handle Photo upload
     if (imagePath == null) return;
     await _profilePictureUpload(imagePath, value.uuid);

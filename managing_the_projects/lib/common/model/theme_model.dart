@@ -1,6 +1,5 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 
-
 /// --------------------------------------------------------------------------------------------------------------------
 /// LIGHT THEME
 /// --------------------------------------------------------------------------------------------------------------------
@@ -19,5 +18,4 @@ const lightNeuTheme = NeumorphicThemeData(
 /// DARK THEME
 /// --------------------------------------------------------------------------------------------------------------------
 
-const darkNeuTheme = NeumorphicThemeData(
-);
+const darkNeuTheme = NeumorphicThemeData();

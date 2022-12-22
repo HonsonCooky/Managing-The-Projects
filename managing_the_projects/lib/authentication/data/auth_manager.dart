@@ -4,6 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 
 class AuthManager {
   AuthManager._privateConstructor();
+
   static final instance = AuthManager._privateConstructor();
   static final _googleSignIn = GoogleSignIn();
 
@@ -32,7 +33,9 @@ class AuthManager {
   }
 
   Future<void> signInWithGoogle() async {
-    await _googleSignIn.signOut().catchError((e){if (kDebugMode) print("$e");});
+    await _googleSignIn.signOut().catchError((e) {
+      if (kDebugMode) print("$e");
+    });
     final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
     final GoogleSignInAuthentication? googleAuth = await googleUser?.authentication;
     final credential = GoogleAuthProvider.credential(
@@ -61,11 +64,11 @@ class AuthManager {
     }
     await FirebaseAuth.instance.sendPasswordResetEmail(email: FirebaseAuth.instance.currentUser!.email!);
   }
-  
+
   Future<void> logout() async {
     if (_googleSignIn.currentUser != null) await _googleSignIn.signOut();
     await FirebaseAuth.instance.signOut();
   }
-  
+
   Future<void>? delete() => FirebaseAuth.instance.currentUser?.delete();
 }

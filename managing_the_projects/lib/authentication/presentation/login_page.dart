@@ -16,7 +16,7 @@ class LoginPage extends StatefulWidget {
 class _LoginPageState extends State<LoginPage> with MtpAliases {
   final _email = TextEditingController();
   final _password = TextEditingController();
-  
+
   @override
   void dispose() {
     _email.dispose();
@@ -64,7 +64,9 @@ class _LoginPageState extends State<LoginPage> with MtpAliases {
                       size: textTheme(context).titleMedium?.fontSize,
                       color: mtpTheme(context).defaultTextColor,
                     ),
-                    onPressed: () {},
+                    onPressed: () async {
+                      
+                    },
                   ),
                   MtpTextButton(
                     text: "Sign up",

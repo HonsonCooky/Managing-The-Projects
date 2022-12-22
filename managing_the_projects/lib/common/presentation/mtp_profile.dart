@@ -36,7 +36,7 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
       milliseconds: Neumorphic.DEFAULT_DURATION.inMilliseconds * 2,
     ),
   );
-  
+
   late final _animation = AnimationController(
     vsync: this,
     lowerBound: 0,
@@ -44,8 +44,8 @@ class _MtpProfileState extends State<MtpProfile> with MtpAliases, TickerProvider
     value: 3,
     duration: Neumorphic.DEFAULT_DURATION,
   );
-  
-  File? _image(){
+
+  File? _image() {
     if (widget.currentImage == null) return null;
     return File(widget.currentImage!.path);
   }

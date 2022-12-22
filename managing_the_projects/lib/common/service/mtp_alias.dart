@@ -58,7 +58,7 @@ mixin MtpAliases {
   void successSnack(BuildContext context, String msg) {
     _mtpSnack(context, msg, mtpTheme(context).baseColor, mtpTheme(context).defaultTextColor);
   }
-  
+
   void errorSnack(BuildContext context, String msg) {
     msg = msg.replaceAll("Exception: ", "Oh no!\n");
     _mtpSnack(context, msg, mtpTheme(context).accentColor, mtpTheme(context).baseColor);

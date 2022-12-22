@@ -1,7 +1,6 @@
-import 'package:flutter/material.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:image_picker/image_picker.dart';
-import 'package:managing_the_projects/authentication/services/attemptSignups.dart';
+import 'package:managing_the_projects/authentication/services/attempt_signups.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_button.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_textfield.dart';
 import 'package:managing_the_projects/common/presentation/mtp_profile.dart';
@@ -124,6 +123,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               ),
               onPressed: () async {
                 try {
+                  setState(() => _loading = true);
                   await attemptSignup(
                     profileImage: _currentImage,
                     email: _email.text,
@@ -133,6 +133,8 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
                   );
                 } catch (e) {
                   errorSnack(context, "$e");
+                } finally {
+                  setState(() => _loading = false);
                 }
               },
             ),

@@ -29,7 +29,7 @@ class MtpApp extends StatelessWidget with MtpAliases {
         ChangeNotifierProvider(create: (context) => CurrentUserManager.instance),
       ],
       child: Consumer<CurrentUserManager>(
-        builder: (context, userManager, child){
+        builder: (context, userManager, child) {
           return NeumorphicApp(
             debugShowCheckedModeBanner: false,
             debugShowMaterialGrid: false,

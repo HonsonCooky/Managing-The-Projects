@@ -19,8 +19,8 @@ class _MtpNeumorphicTextfieldState extends State<MtpNeumorphicTextfield>
 
   @override
   Widget build(BuildContext context) {
-    var hintColor =  mtpTheme(context).defaultTextColor.withAlpha(120);
-    
+    var hintColor = mtpTheme(context).defaultTextColor.withAlpha(120);
+
     return Stack(
       alignment: Alignment.centerRight,
       children: [
@@ -55,15 +55,15 @@ class _MtpNeumorphicTextfieldState extends State<MtpNeumorphicTextfield>
         ),
         widget.canObscure
             ? Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 12.0),
-              child: MtpNeumorphicIconSwitch(
+                padding: const EdgeInsets.symmetric(horizontal: 12.0),
+                child: MtpNeumorphicIconSwitch(
                   _obscure ? Icons.visibility_off : Icons.visibility,
                   textColor: hintColor,
                   onTap: () => Future<void>(() {
                     setState(() => _obscure = !_obscure);
                   }),
                 ),
-            )
+              )
             : const SizedBox()
       ],
     );

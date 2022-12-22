@@ -3,6 +3,7 @@ import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:managing_the_projects/authentication/presentation/forgot_password_page.dart';
 import 'package:managing_the_projects/authentication/presentation/login_page.dart';
 import 'package:managing_the_projects/authentication/presentation/signup_page.dart';
+import 'package:managing_the_projects/authentication/presentation/verification_page.dart';
 import 'package:managing_the_projects/common/presentation/mtp_dismissable.dart';
 import 'package:managing_the_projects/common/presentation/mtp_logo.dart';
 import 'package:managing_the_projects/common/presentation/mtp_overlay.dart';
@@ -19,6 +20,7 @@ class AuthSpa extends StatefulWidget {
 }
 
 class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, MtpAliases {
+  var _refreshing = false;
   final PageController _pageController = PageController(initialPage: 1);
 
   @override
@@ -71,17 +73,11 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     );
   }
 
-  Widget _verificationBody() {
-    return Container(
-      color: Colors.pink,
-    );
-  }
-
   Widget _portraitMode(bool verificationRequired) {
     return Column(
       children: [
         _logo(),
-        Expanded(child: verificationRequired ? _verificationBody() : _pageBody()),
+        Expanded(child: verificationRequired ? VerificationPage(changePage: _changePage) : _pageBody()),
       ],
     );
   }
@@ -90,7 +86,7 @@ class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, 
     return Row(
       children: [
         _logo(),
-        Expanded(child: verificationRequired ? _verificationBody() : _pageBody()),
+        Expanded(child: verificationRequired ? VerificationPage(changePage: _changePage) : _pageBody()),
       ],
     );
   }

@@ -6,8 +6,6 @@ part of 'profile_model.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) =>
-    ProfileModel();
+ProfileModel _$ProfileModelFromJson(Map<String, dynamic> json) => ProfileModel();
 
-Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) =>
-    <String, dynamic>{};
+Map<String, dynamic> _$ProfileModelToJson(ProfileModel instance) => <String, dynamic>{};
