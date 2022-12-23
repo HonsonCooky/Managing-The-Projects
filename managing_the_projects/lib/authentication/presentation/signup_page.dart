@@ -1,6 +1,7 @@
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:managing_the_projects/authentication/services/attempt_signups.dart';
+import 'package:managing_the_projects/common/presentation/mtp_loading_widget.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_button.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_textfield.dart';
 import 'package:managing_the_projects/common/presentation/mtp_profile.dart';
@@ -43,17 +44,6 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
 
   @override
   Widget build(BuildContext context) {
-    return _body();
-  }
-
-  Widget _loadingWidget() {
-    return const SizedBox(
-      height: 12,
-      child: NeumorphicProgressIndeterminate(),
-    );
-  }
-
-  Widget _body() {
     return ListView(
       children: [
         SizedBox(height: height(context) / 20),
@@ -77,7 +67,7 @@ class _SignupPageState extends State<SignupPage> with MtpAliases {
               ),
         ),
         SizedBox(height: height(context) / 40),
-        _loading ? _loadingWidget() : _userInputs(),
+        MtpLoadingWidget(show: _loading, other: _userInputs()),
       ],
     );
   }

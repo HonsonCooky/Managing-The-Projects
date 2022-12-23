@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:managing_the_projects/authentication/data/auth_manager.dart';
 import 'package:managing_the_projects/authentication/services/attempt_signups.dart';
+import 'package:managing_the_projects/common/presentation/mtp_loading_widget.dart';
 import 'package:managing_the_projects/common/presentation/mtp_neumorphic_button.dart';
 import 'package:managing_the_projects/common/presentation/mtp_text_button.dart';
 import 'package:managing_the_projects/common/service/mtp_alias.dart';
@@ -32,7 +33,9 @@ class _VerificationState extends State<VerificationPage> with MtpAliases {
                   color: mtpTheme(context).defaultTextColor,
                 ),
           ),
-          const SizedBox(height: 10,),
+          const SizedBox(
+            height: 10,
+          ),
           Text(
             "- Check your emails (including spam).\n\n"
             "- Follow the instructions in email.\n\n"
@@ -43,6 +46,7 @@ class _VerificationState extends State<VerificationPage> with MtpAliases {
                 ),
           ),
           const Expanded(child: SizedBox()),
+          MtpLoadingWidget(show: _refreshing, other: const SizedBox()),
           const SizedBox(height: 40),
           MtpNeumorphicButton(
             text: "REFRESH",
