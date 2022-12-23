@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter_neumorphic/flutter_neumorphic.dart';
 import 'package:managing_the_projects/user/services/current_user.dart';
 
@@ -59,8 +60,16 @@ mixin MtpAliases {
     _mtpSnack(context, msg, mtpTheme(context).baseColor, mtpTheme(context).defaultTextColor);
   }
 
+  String _errorTranslation(String errorMsg) {
+    return errorMsg
+        .replaceAll("[firebase_auth/unknown] Given String is empty or null", "Missing credentials")
+        .replaceAll("[firebase_auth/invalid-email]", "")
+        .replaceAll("Exception: ", "");
+  }
+
   void errorSnack(BuildContext context, String msg) {
-    msg = msg.replaceAll("Exception: ", "Oh no!\n");
+    if (kDebugMode) print(msg);
+    msg = _errorTranslation(msg);
     _mtpSnack(context, msg, mtpTheme(context).accentColor, mtpTheme(context).baseColor);
   }
 

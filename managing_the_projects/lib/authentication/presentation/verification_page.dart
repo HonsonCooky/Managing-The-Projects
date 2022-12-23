@@ -67,7 +67,7 @@ class _VerificationState extends State<VerificationPage> with MtpAliases {
           MtpTextButton(
             text: "Go Back",
             onPressed: () async {
-              await undo("Failed Verification", CurrentUserManager.instance.cachedUserModel);
+              await undoSignup("Failed Verification", CurrentUserManager.instance.cachedUserModel);
               setState(() {});
               widget.changePage(2);
             },
