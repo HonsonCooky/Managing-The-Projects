@@ -20,7 +20,6 @@ class AuthSpa extends StatefulWidget {
 }
 
 class _AuthSpaState extends State<AuthSpa> with SingleTickerProviderStateMixin, MtpAliases {
-  var _refreshing = false;
   final PageController _pageController = PageController(initialPage: 1);
 
   @override

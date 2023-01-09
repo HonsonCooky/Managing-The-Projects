@@ -3,10 +3,17 @@ import 'package:managing_the_projects/common/service/mtp_alias.dart';
 
 class MtpPageIndicator extends StatefulWidget {
   final void Function(int index) changePage;
+  final IconData Function(int index)? pageIcon;
   final PageController controller;
   final int numberOfPages;
 
-  const MtpPageIndicator({super.key, required this.numberOfPages, required this.controller, required this.changePage});
+  const MtpPageIndicator({
+    super.key,
+    required this.numberOfPages,
+    required this.controller,
+    required this.changePage,
+    this.pageIcon,
+  });
 
   @override
   State<StatefulWidget> createState() => _MtpPageIndicatorState();
